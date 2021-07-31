@@ -28,7 +28,7 @@ namespace API.Controllers
 
         [HttpPut("{id}")]
         public async Task<IActionResult> EditActivity(Guid id, Activity activity) {
-            activity.Id = id;  // ここで設定する理由が？activityにはIdがセットされていない？
+            activity.Id = id;  // ActivityにもGuidはセットされている。URLパラメータに指定された値で確実に更新されるようにするため、セットしている。
             return Ok(await Mediator.Send(new Edit.Command{Activity = activity}));
         }
 
